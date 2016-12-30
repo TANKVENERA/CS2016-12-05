@@ -45,8 +45,18 @@ public class A_Knapsack {
             gold[i]=scanner.nextInt();
         }
 
+        int[] dW = new int[w + 1];
 
-        int result = 0;
+        for (int i = 1; i < dW.length; i++) {
+            for (int j = 0; j < gold.length; j++) {
+                int dif = i - gold[j];
+                if (dif >= 0 && dW[dif] + gold[j] > dW[i]){
+                    dW[i] = dW[dif] + gold[j];
+                }
+            }
+        }
+
+        int result = dW[dW.length - 1];
         //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
         return result;
     }

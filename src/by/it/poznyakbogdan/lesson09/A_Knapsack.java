@@ -58,16 +58,21 @@ public class A_Knapsack {
 
         int result = dW[dW.length - 1];
         //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
+        System.out.println(n);
+        Long i = Long.valueOf(5);
+
+//        int result = 0;
         return result;
     }
 
 
     public static void main(String[] args) throws FileNotFoundException {
         String root = System.getProperty("user.dir") + "/src/";
-        InputStream stream = new FileInputStream(root + "by/it/a_khmelov/lesson09/dataA.txt");
+        InputStream stream = new FileInputStream(root + "by/it/poznyakbogdan/lesson09/dataA.txt");
         A_Knapsack instance = new A_Knapsack();
         int res=instance.getMaxWeight(stream);
         System.out.println(res);
+
     }
 }
 

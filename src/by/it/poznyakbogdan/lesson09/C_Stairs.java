@@ -38,13 +38,32 @@ public class C_Stairs {
         Scanner scanner = new Scanner(stream);
         int n=scanner.nextInt();
         int stairs[]=new int[n];
+        int res[] = new int[n];
         for (int i = 0; i < n; i++) {
             stairs[i]=scanner.nextInt();
+            res[i] = Integer.MIN_VALUE;
         }
         //!!!!!!!!!!!!!!!!!!!!!!!!!     НАЧАЛО ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
-        int result = 0;
+        res[0] = stairs[0];
+        res[1] = stairs[1];
+        if (res[0] + stairs[1] > res[1]){
+            res[1] = res[0] + stairs[1];
+        }
 
 
+        for (int i = 2; i < n; i++) {
+            for (int j = i - 2; j < i; j++) {
+                if (res[j] + stairs[i] > res[i]){
+                    res[i] = res[j] + stairs[i];
+                }
+            }
+        }
+
+        int result = res[n-1];
+
+        for (int i = 0; i < res.length; i++){
+            System.out.printf(res[i] + ", ");
+        }
 
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!

@@ -39,15 +39,55 @@ import java.util.Scanner;
 
 public class A_EditDist {
 
+    private static int[][] d;
+    private char[] firstArray;
+    private char[] secondArray;
 
     int getDistanceEdinting(String one, String two) {
         //!!!!!!!!!!!!!!!!!!!!!!!!!     НАЧАЛО ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
+        firstArray = one.toCharArray();
+        secondArray = two.toCharArray();
 
+        int n = firstArray.length + 1;
+        int m = secondArray.length + 1;
+        d = new int[n][m];
 
-        int result = 0;
-        //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                d[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        int result = EditDis(n - 1, m - 1);
+
         return result;
     }
+
+    private int EditDis(int i, int j) {
+        if (d[i][j] == Integer.MAX_VALUE) {
+            if (i == 0) d[i][j] = j;
+            else if (j == 0) d[i][j] = i;
+            else {
+                int ins = EditDis(i, j - 1) + 1;
+                int del = EditDis(i - 1, j) + 1;
+                int rep;
+                if (firstArray[i - 1] == secondArray[j - 1]) {
+                    rep = EditDis(i - 1, j - 1);    //если совпадение
+                } else {
+                    rep = EditDis(i - 1, j - 1) + 1;  //иначе замена
+                }
+                d[i][j] = min(ins, del, rep);
+            }
+        }
+        return d[i][j];
+    }
+
+    public int min(int a, int b, int c) {
+        if (a < b && a < c) return a;
+        if (b < a && b < c) return b;
+        else return c;
+    }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
 
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -55,9 +95,9 @@ public class A_EditDist {
         InputStream stream = new FileInputStream(root + "by/it/a_khmelov/lesson08/dataABC.txt");
         A_EditDist instance = new A_EditDist();
         Scanner scanner = new Scanner(stream);
-        System.out.println(instance.getDistanceEdinting(scanner.nextLine(),scanner.nextLine()));
-        System.out.println(instance.getDistanceEdinting(scanner.nextLine(),scanner.nextLine()));
-        System.out.println(instance.getDistanceEdinting(scanner.nextLine(),scanner.nextLine()));
+        System.out.println(instance.getDistanceEdinting(scanner.nextLine(), scanner.nextLine()));
+        System.out.println(instance.getDistanceEdinting(scanner.nextLine(), scanner.nextLine()));
+        System.out.println(instance.getDistanceEdinting(scanner.nextLine(), scanner.nextLine()));
     }
 }
 

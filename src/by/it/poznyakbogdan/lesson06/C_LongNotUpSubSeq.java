@@ -3,6 +3,7 @@ package by.it.poznyakbogdan.lesson06;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /*
@@ -38,7 +39,7 @@ import java.util.Scanner;
 
 public class C_LongNotUpSubSeq {
 
-    int getNotUpSeqSize(InputStream stream) throws FileNotFoundException {
+    int[] getNotUpSeqSize(InputStream stream) throws FileNotFoundException {
         //подготовка к чтению данных
         Scanner scanner = new Scanner(stream);
         //!!!!!!!!!!!!!!!!!!!!!!!!!     НАЧАЛО ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
@@ -55,7 +56,7 @@ public class C_LongNotUpSubSeq {
         }
         //тут реализуйте логику задачи методами динамического программирования (!!!)
 
-        int result = 0;
+        int res = 0;
 
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < i; j++) {
@@ -67,8 +68,8 @@ public class C_LongNotUpSubSeq {
 
         }
         for (int i = 0; i < d.length; i++) {
-            if (d[i] > result){
-                result = d[i];
+            if (d[i] > res){
+                res = d[i];
             }
         }
         int max = 0;
@@ -76,16 +77,35 @@ public class C_LongNotUpSubSeq {
             if (d[i] > max) {
                 max = i;
             }
-            System.out.println("d[i] = " + d[i] + " ind[i] = " + ind[i]);
+            //System.out.println("d[i] = " + d[i] + " ind[i] = " + ind[i]);
         }
+        for (int i = 0; i < d.length; i++) {
+            System.out.printf(d[i] + ", ");
+        }
+        System.out.println();
+        for (int i = 0; i < ind.length; i++) {
+            System.out.printf(ind[i] + ", ");
+        }
+        System.out.println();
         int i = max;
         int w = 0;
+        ArrayList<Integer> r = new ArrayList<Integer>();
         while (i != -1){
 
-            System.out.printf("i = " + i + " | " + m[i] + ", ");
+            System.out.printf("i = " + (i + 1) + " | " + m[i] + ", ");
+            r.add(i+1);
             i = ind[i];
         }
-
+        System.out.println();
+        int dlina = r.size();
+        int[] result = new int[dlina + 1];
+        for (int j = dlina - 1; j >= 0 ; j--) {
+            result[dlina - 1 - j] = r.get(j);
+        }
+        for (int j = 0; j < dlina; j++) {
+            System.out.printf(result[j] + ", ");
+        }
+        result[dlina]  = res;
         //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
         return result;
     }
@@ -95,7 +115,7 @@ public class C_LongNotUpSubSeq {
         String root = System.getProperty("user.dir") + "/src/";
         InputStream stream = new FileInputStream(root + "by/it/a_khmelov/lesson06/dataC.txt");
         C_LongNotUpSubSeq instance = new C_LongNotUpSubSeq();
-        int result = instance.getNotUpSeqSize(stream);
+        int[] result = instance.getNotUpSeqSize(stream);
         System.out.print(result);
     }
 

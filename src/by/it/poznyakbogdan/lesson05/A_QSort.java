@@ -143,9 +143,9 @@ public class A_QSort {
         //тут реализуйте логику задачи с применением быстрой сортировки
         //в классе отрезка Segment реализуйте нужный для этой задачи компаратор
         quickSort(dots, 0, dots.length - 1);
-        for (int i = 0; i < dots.length; i++) {
-            System.out.println(dots[i].start);
-        }
+//        for (int i = 0; i < dots.length; i++) {
+//            System.out.println(dots[i].start);
+//        }
         Point[] data_points = new Point[n*2 + m];
         int active = 0;
         int k = 0;

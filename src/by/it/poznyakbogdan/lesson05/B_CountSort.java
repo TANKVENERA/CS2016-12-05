@@ -42,7 +42,7 @@ public class B_CountSort {
             }
         }
 
-        System.out.println(min + " " + max);
+       // System.out.println(min + " " + max);
         int[] frequnce = new int[max - min + 1];
 
         for (int i = 0; i < points.length; i++){

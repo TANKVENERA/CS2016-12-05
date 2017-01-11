@@ -71,13 +71,13 @@ public class B_EditDist {
             for (int j = 1; j < m + 1; j++) {
                 if (str1[i - 1] == str2[j - 1]){
                     data_dist[i][j] = data_dist[i - 1][j - 1];
-                    System.out.printf(data_dist[i][j] + ", ");
+                   // System.out.printf(data_dist[i][j] + ", ");
                 }else {
                     data_dist[i][j] = get_min(data_dist[i - 1][j], data_dist[i][j - 1], data_dist[i - 1][j - 1]) + 1;
-                    System.out.printf(data_dist[i][j] + ", ");
+                    //System.out.printf(data_dist[i][j] + ", ");
                 }
             }
-            System.out.println();
+            //System.out.println();
         }
 
         int result = data_dist[n][m];

@@ -99,7 +99,8 @@ public class A_Huffman {
         while (priorityQueue.size() != 1) {
             priorityQueue.add(new InternalNode(priorityQueue.poll(), priorityQueue.poll()));
         }
-        Node root = priorityQueue.poll();// берем последний элемент , в нем хранится только частота
+
+        Node root = priorityQueue.poll();// берем последний элемент
         if (count.size()!=1) {
             root.FillCodes("");
         }

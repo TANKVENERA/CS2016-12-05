@@ -39,7 +39,9 @@ public class A_BinaryFind {
         for (int i = 1; i <= n; i++) {
             a[i-1] = scanner.nextInt();
         }
-
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.printf(a[i] + ", ");
+//        }
         //размер массива индексов
         int k = scanner.nextInt();
         int[] result=new int[k];
@@ -47,11 +49,11 @@ public class A_BinaryFind {
             int value = scanner.nextInt();
             //тут реализуйте бинарный поиск индекса
             int left = 0;
-            int right = k;
+            int right = k - 1;
             int index = 0;
             while (left <= right){
                 index = (int) (left+right)/2;
-                if (left >= k | right <= 0){
+                if (left >= k - 1 | right <= 0){
                     break;
                 }else if (a[index] == value){
                     result[i] = index + 1;

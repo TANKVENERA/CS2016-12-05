@@ -130,7 +130,7 @@ public class A_Huffman {
                 count.put(ch, 1);
             }
         }
-        System.out.println(count);
+        //System.out.println(count);
         //2. перенесем все символы в приоритетную очередь в виде листьев
         PriorityQueue<Node> priorityQueue = new PriorityQueue<>();
 
@@ -138,15 +138,21 @@ public class A_Huffman {
             LeafNode leafNode = new LeafNode(entry.getValue(), entry.getKey());
             priorityQueue.add(leafNode);
         }
-        while (priorityQueue.size() > 1 ){
+        if(priorityQueue.size() == 1){
             Node left = priorityQueue.poll();
-            Node right = priorityQueue.poll();
-            InternalNode internalNode = new InternalNode(left, right);
-            priorityQueue.add(internalNode);
-        }
+            left.fillCodes("0");
+            priorityQueue.add(left);
+        }else {
+            while (priorityQueue.size() > 1) {
+                Node left = priorityQueue.poll();
+                Node right = priorityQueue.poll();
+                InternalNode internalNode = new InternalNode(left, right);
+                priorityQueue.add(internalNode);
+            }
 
-        Node root = priorityQueue.poll();
-        root.fillCodes("");
+            Node root = priorityQueue.poll();
+            root.fillCodes("");
+        }
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++){
@@ -174,7 +180,7 @@ public class A_Huffman {
 
     public static void main(String[] args) throws FileNotFoundException {
         String root = System.getProperty("user.dir") + "/src/";
-        File f = new File(root + "by/it/a_khmelov/lesson03/dataHuffman.txt");
+        File f = new File(root + "by/it/poznyakbogdan/lesson03/dataHuffman.txt");
         A_Huffman instance = new A_Huffman();
         long startTime = System.currentTimeMillis();
         String result = instance.encode(f);

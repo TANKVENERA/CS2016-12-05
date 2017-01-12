@@ -45,19 +45,34 @@ public class A_Knapsack {
             gold[i]=scanner.nextInt();
         }
 
+        int[] dW = new int[w + 1];
 
-        int result = 0;
+        for (int i = 1; i < dW.length; i++) {
+            for (int j = 0; j < gold.length; j++) {
+                int dif = i - gold[j];
+                if (dif >= 0 && dW[dif] + gold[j] > dW[i]){
+                    dW[i] = dW[dif] + gold[j];
+                }
+            }
+        }
+
+        int result = dW[dW.length - 1];
         //!!!!!!!!!!!!!!!!!!!!!!!!!     КОНЕЦ ЗАДАЧИ     !!!!!!!!!!!!!!!!!!!!!!!!!
+        System.out.println(n);
+        Long i = Long.valueOf(5);
+
+//        int result = 0;
         return result;
     }
 
 
     public static void main(String[] args) throws FileNotFoundException {
         String root = System.getProperty("user.dir") + "/src/";
-        InputStream stream = new FileInputStream(root + "by/it/a_khmelov/lesson09/dataA.txt");
+        InputStream stream = new FileInputStream(root + "by/it/poznyakbogdan/lesson09/dataA.txt");
         A_Knapsack instance = new A_Knapsack();
         int res=instance.getMaxWeight(stream);
         System.out.println(res);
+
     }
 }
 

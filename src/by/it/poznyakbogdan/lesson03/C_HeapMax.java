@@ -95,10 +95,10 @@ public class C_HeapMax {
         }
 
         void insert(Long value) { //вставка
-            writeHeap();
-            System.out.println((int) 1/2);
+            //writeHeap();
+            //System.out.println((int) 1/2);
             int cap = heap.size();
-            System.out.println(cap);
+            //System.out.println(cap);
             if(cap > 0) {                                 //где то происходит зацикливание по причине того что в массиве
                 heap.add(cap, value);
                 siftUp(cap);                                //индексы начинаются с 0(нужно устранить этот баг)
@@ -114,7 +114,8 @@ public class C_HeapMax {
             heap.set(1, Long.MIN_VALUE);
             int max = siftDown(1);
             heap.remove(max);
-            //writeHeap();       debug
+            //writeHeap();
+            System.out.println(result);
             return result;
         }
 
@@ -152,7 +153,7 @@ public class C_HeapMax {
         String root = System.getProperty("user.dir") + "/src/";
         InputStream stream = new FileInputStream(root + "by/it/poznyakbogdan/lesson03/heapData.txt");
         C_HeapMax instance = new C_HeapMax();
-        System.out.println("MAX="+instance.findMaxValue(stream));
+       // System.out.println("MAX="+instance.findMaxValue(stream));
     }
 
     // РЕМАРКА. Это задание исключительно учебное.
